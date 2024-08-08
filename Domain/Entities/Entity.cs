@@ -1,8 +1,8 @@
 ﻿namespace PhoneCompany.Domain.Entities
 {
-    public abstract class Entity<TPrimatyKey>
+    public abstract class Entity<TPrimaryKey>
     {
-        public TPrimatyKey Id { get; set; }
+        public TPrimaryKey Id { get; set; }
 
     }
 

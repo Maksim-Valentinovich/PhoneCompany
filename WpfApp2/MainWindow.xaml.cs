@@ -1,11 +1,12 @@
-﻿using Microsoft.Data.SqlClient;
+﻿using System;
 using System.Data;
+using System.Data.SqlClient;
 using System.Windows;
 
-namespace TelephoneCompany
+namespace WpfApp2
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Логика взаимодействия для MainWindow.xaml
     /// </summary>
     public partial class MainWindow : Window
     {
