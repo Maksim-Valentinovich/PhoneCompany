@@ -1,8 +1,8 @@
-﻿namespace PhoneCompany.Domain.Entities
+﻿namespace WpfApp1.Entities
 {
     public abstract class Entity<TPrimaryKey>
     {
-        public required TPrimaryKey Id { get; set; }
+        public TPrimaryKey Id { get; set; }
 
     }
 

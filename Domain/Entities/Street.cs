@@ -1,6 +1,4 @@
-﻿using OutCode.EscapeTeams.ObjectRepository;
-
-namespace PhoneCompany.Domain.Entities
+﻿namespace PhoneCompany.Domain.Entities
 {
     public class Street : Entity
     {

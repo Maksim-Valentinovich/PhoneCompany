@@ -5,8 +5,34 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfApp1"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+            Title="MainWindow" Height="300" Width="750">
+    <Window.Resources>
+        <Style TargetType="Button">
+            <Setter Property="Margin" Value="20 8 20 8" />
+            <Setter Property="Width" Value="100" />
+            <Setter Property="Height" Value="30" />
+        </Style>
+    </Window.Resources>
     <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <DataGrid AutoGenerateColumns="False" x:Name="phonesGrid">
+            <DataGrid.Columns>
+                <DataGridTextColumn Binding="{Binding Name}" Header="ФИО" Width="120"/>
+                <DataGridTextColumn Binding="{Binding StreetName}" Header="Улица" Width="80"/>
+                <DataGridTextColumn Binding="{Binding NumHouse}" Header="Номер дома" Width="79"/>
+                <DataGridTextColumn Binding="{Binding HomePhone}" Header="Номер телефона (домашний)" Width="155"/>
+                <DataGridTextColumn Binding="{Binding WorkPhone}" Header="Номер телефона (рабочий)" Width="155"/>
+                <DataGridTextColumn Binding="{Binding MobilePhone}" Header="Номер телефона (мобильный)" Width="155"/>
+            </DataGrid.Columns>
+        </DataGrid>
 
+        <StackPanel HorizontalAlignment="Center"  Grid.Row="1" Orientation="Horizontal">
+            <Button x:Name="searchButton" Content="Поиск" Click="SearcButton_Click" />
+            <Button x:Name="scvButton" Content="Выгрузить CSV" Click="ScvButton_Click" />
+            <Button x:Name="streetButton" Content="Улицы" Click="StreetButton_Click" />
+        </StackPanel>
     </Grid>
 </Window>
