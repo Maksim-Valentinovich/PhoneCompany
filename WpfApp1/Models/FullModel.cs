@@ -1,10 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
+﻿using System.ComponentModel;
 using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace WpfApp1.Models
 {
@@ -18,6 +13,10 @@ namespace WpfApp1.Models
         public string FullName => $"{surname} {name} {middleName}";
 
         public int homePhone;
+
+        public int mobilePhone;
+
+        public int workPhone;
 
         public string streetName;
 
@@ -79,6 +78,26 @@ namespace WpfApp1.Models
             {
                 homePhone = value;
                 OnPropertyChanged("HomePhone");
+            }
+        }
+
+        public int MobilePhone
+        {
+            get { return mobilePhone; }
+            set
+            {
+                mobilePhone = value;
+                OnPropertyChanged("MobilePhone");
+            }
+        }
+
+        public int WorkPhone
+        {
+            get { return workPhone; }
+            set
+            {
+                workPhone = value;
+                OnPropertyChanged("WorkPhone");
             }
         }
 

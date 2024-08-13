@@ -15,7 +15,6 @@ namespace WpfApp1
             using (IDbConnection conn = new SQLiteConnection(LoadConnectionString()))
             {
                 List<FullModel> fullModels = (List<FullModel>)conn.Query<FullModel>("select * from Abonents join Addreses on Addreses.AbonentId = Abonents.Id join Streets on Streets.Id = Addreses.StreetId join PhoneNumbers on PhoneNumbers.AbonentId = Abonents.Id", new DynamicParameters());
-
                 return fullModels;
             }
         }
