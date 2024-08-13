@@ -9,14 +9,9 @@ namespace TelephoneCompany
     /// </summary>
     public partial class MainWindow : Window
     {
-        string connectionString;
-        SqlDataAdapter adapter;
-        DataTable phonesTable;
-
         public MainWindow()
         {
             InitializeComponent();
-            //connectionString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
             LoadTable();
         }
 
@@ -46,37 +41,37 @@ namespace TelephoneCompany
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            string sql = "SELECT * FROM Abonement";
-            phonesTable = new DataTable();
-            SqlConnection connection = null;
-            try
-            {
-                connection = new SqlConnection(connectionString);
-                SqlCommand command = new SqlCommand(sql, connection);
-                adapter = new SqlDataAdapter(command);
+            //string sql = "SELECT * FROM Abonement";
+            //phonesTable = new DataTable();
+            //SqlConnection connection = null;
+            //try
+            //{
+            //    connection = new SqlConnection(connectionString);
+            //    SqlCommand command = new SqlCommand(sql, connection);
+            //    adapter = new SqlDataAdapter(command);
 
-                // установка команды на добавление для вызова хранимой процедуры
-                adapter.InsertCommand = new SqlCommand("sp_InsertPhone", connection);
-                adapter.InsertCommand.CommandType = CommandType.StoredProcedure;
-                adapter.InsertCommand.Parameters.Add(new SqlParameter("@title", SqlDbType.NVarChar, 50, "Title"));
-                adapter.InsertCommand.Parameters.Add(new SqlParameter("@company", SqlDbType.NVarChar, 50, "Company"));
-                adapter.InsertCommand.Parameters.Add(new SqlParameter("@price", SqlDbType.Int, 0, "Price"));
-                SqlParameter parameter = adapter.InsertCommand.Parameters.Add("@Id", SqlDbType.Int, 0, "Id");
-                parameter.Direction = ParameterDirection.Output;
+            //    // установка команды на добавление для вызова хранимой процедуры
+            //    adapter.InsertCommand = new SqlCommand("sp_InsertPhone", connection);
+            //    adapter.InsertCommand.CommandType = CommandType.StoredProcedure;
+            //    adapter.InsertCommand.Parameters.Add(new SqlParameter("@title", SqlDbType.NVarChar, 50, "Title"));
+            //    adapter.InsertCommand.Parameters.Add(new SqlParameter("@company", SqlDbType.NVarChar, 50, "Company"));
+            //    adapter.InsertCommand.Parameters.Add(new SqlParameter("@price", SqlDbType.Int, 0, "Price"));
+            //    SqlParameter parameter = adapter.InsertCommand.Parameters.Add("@Id", SqlDbType.Int, 0, "Id");
+            //    parameter.Direction = ParameterDirection.Output;
 
-                connection.Open();
-                adapter.Fill(phonesTable);
-                phonesGrid.ItemsSource = phonesTable.DefaultView;
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-            finally
-            {
-                if (connection != null)
-                    connection.Close();
-            }
+            //    connection.Open();
+            //    adapter.Fill(phonesTable);
+            //    phonesGrid.ItemsSource = phonesTable.DefaultView;
+            //}
+            //catch (Exception ex)
+            //{
+            //    MessageBox.Show(ex.Message);
+            //}
+            //finally
+            //{
+            //    if (connection != null)
+            //        connection.Close();
+            //}
         }
 
         private void SearcButton_Click(object sender, RoutedEventArgs e)

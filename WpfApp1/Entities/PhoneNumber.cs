@@ -1,20 +1,14 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
 
-namespace PhoneCompany.Domain.Entities
+namespace WpfApp1.Entities
 {
-    public class PhoneNumber : Entity /*BaseEntity*/
+    public class PhoneNumber : Entity
     {
-        //public PhoneNumber(Guid id) 
-        //{
-        //    Id = id;
-        //}
-
-        //public Guid AbonentId { get; set; }
 
         public int AbonentId { get; set; }
 
         [ForeignKey(nameof(AbonentId))]
-        public required Abonent Abonent { get; set; }
+        public Abonent Abonent { get; set; }
 
 
         public int HomePhone { get; set; }
