@@ -7,11 +7,11 @@ namespace WpfApp1.Models
     {
         public int abonentId;
 
-        public int homePhone;
+        public string homePhone;
 
-        public int workPhone;
+        public string workPhone;
 
-        public int mobilePhone;
+        public string mobilePhone;
 
         public int AbonentId
         {
@@ -23,7 +23,7 @@ namespace WpfApp1.Models
             }
         }
 
-        public int HomePhone
+        public string HomePhone
         {
             get { return homePhone; }
             set
@@ -32,7 +32,7 @@ namespace WpfApp1.Models
                 OnPropertyChanged("HomePhone");
             }
         }
-        public int WorkPhone
+        public string WorkPhone
         {
             get { return workPhone; }
             set
@@ -42,7 +42,7 @@ namespace WpfApp1.Models
             }
         }
 
-        public int MobilePhone
+        public string MobilePhone
         {
             get { return mobilePhone; }
             set
