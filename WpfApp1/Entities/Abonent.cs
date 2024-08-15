@@ -9,7 +9,6 @@ namespace WpfApp1.Entities
         public string Surname { get; set; }
 
         public string MiddleName { get; set; }
-        
 
         [NotMapped]
         public string FullName => $"{Surname} {Name} {MiddleName}";

@@ -35,9 +35,7 @@ namespace WpfApp1
             {
                 if (searchWindow.Password != null)
                 {
-                    var y = fullModels.Find(x => x.HomePhone == int.Parse(searchWindow.Password));
-                    //findModel.Add(fullModels.Find(x => x.HomePhone == int.Parse(searchWindow.Password)));
-                    //phonesGrid.ItemsSource = findModel;
+                    findModel.Add(fullModels.Find(x => x.HomePhone == int.Parse(searchWindow.Password)));
                     phonesGrid.ItemsSource = findModel;
                 }
                 else
