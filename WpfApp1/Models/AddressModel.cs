@@ -7,7 +7,7 @@ namespace WpfApp1.Models
     {
         public int streetId;
 
-        public int abonementId;
+        public int abonentId;
 
         public int numberHouse;
 
@@ -20,13 +20,13 @@ namespace WpfApp1.Models
                 OnPropertyChanged("StreetId");
             }
         }
-        public int AbonementId
+        public int AbonentId
         {
-            get { return abonementId; }
+            get { return abonentId; }
             set
             {
-                abonementId = value;
-                OnPropertyChanged("AbonementId");
+                abonentId = value;
+                OnPropertyChanged("AbonentId");
             }
         }
 

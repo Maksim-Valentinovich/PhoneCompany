@@ -7,7 +7,7 @@ namespace WpfApp1.Models
     {
         public int id;
 
-        public string name;
+        public string streetName;
 
         public string info;
 
@@ -21,13 +21,13 @@ namespace WpfApp1.Models
             }
         }
 
-        public string Name
+        public string StreetName
         {
-            get { return name; }
+            get { return streetName; }
             set
             {
-                name = value;
-                OnPropertyChanged("Name");
+                streetName = value;
+                OnPropertyChanged("StreetName");
             }
         }
 
