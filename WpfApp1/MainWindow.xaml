@@ -34,6 +34,7 @@
             <Button x:Name="searchButton" Content="Поиск" Click="SearcButton_Click" Background="LightBlue" />
             <Button x:Name="scvButton" Content="Выгрузить CSV" Click="ScvButton_Click" Background="LightBlue" />
             <Button x:Name="streetButton" Content="Улицы" Click="StreetButton_Click" Background="LightBlue"/>
+            <Button x:Name="refreshButton" Content="Обновить" Click="RefrashButton_Click" Background="LightBlue"/>
         </StackPanel>
     </Grid>
 </Window>

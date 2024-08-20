@@ -1,8 +1,10 @@
 ﻿using CsvHelper;
+using Dapper;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
+using System.Linq;
 using System.Windows;
 using WpfApp1.Models;
 
@@ -18,7 +20,9 @@ namespace WpfApp1
         public MainWindow()
         {
             InitializeComponent();
-            LoadData();
+            //LoadData();
+            //SeeData();
+            SqlDataNew();
             phonesGrid.ItemsSource = fullModels;
         }
 
@@ -27,19 +31,38 @@ namespace WpfApp1
             return fullModels = SqLiteDataAccess.LoadData();
         }
 
+        private void SeeData()
+        {
+            var connection = SqLiteDataAccess.SqlDataFromDB();
+            fullModels = (List<FullModel>)connection.Query<FullModel>("select * from Abonents join Addreses on Addreses.AbonentId = Abonents.Id join Streets on Streets.Id = Addreses.StreetId join PhoneNumbers on PhoneNumbers.AbonentId = Abonents.Id", new DynamicParameters());
+        }
+
+        private void SqlDataNew()
+        {
+            var connection = SqLiteDataAccess.SqlDataNew();
+            fullModels = (List<FullModel>)connection.Query<FullModel>("select * from Abonents join Addreses on Addreses.AbonentId = Abonents.Id join Streets on Streets.Id = Addreses.StreetId join PhoneNumbers on PhoneNumbers.AbonentId = Abonents.Id", new DynamicParameters());
+        }
+
+        private void RefrashButton_Click(object sender, RoutedEventArgs e)
+        {
+            findModel = new List<FullModel>();
+            phonesGrid.ItemsSource = fullModels;
+        }
         private void SearcButton_Click(object sender, RoutedEventArgs e)
         {
             SearchWindow searchWindow = new SearchWindow();
 
             if (searchWindow.ShowDialog() == true)
             {
-                if (searchWindow.Password != null)
+                if (fullModels.Any(s => s.HomePhone == searchWindow.Password))
                 {
-                    findModel.Add(fullModels.Find(x => x.HomePhone == int.Parse(searchWindow.Password)));
+                    findModel.Add(fullModels.Find(x => x.HomePhone == searchWindow.Password || x.WorkPhone == searchWindow.Password || x.MobilePhone == searchWindow.Password));
                     phonesGrid.ItemsSource = findModel;
                 }
                 else
+                {
                     MessageBox.Show("Нет абонентов, удовлетворяющих критерию поиска");
+                }
             }
             else
             {

@@ -20,9 +20,9 @@ namespace WpfApp1
 
         private void Accept_Click(object sender, RoutedEventArgs e)
         {
-            if (Password.Length == 11 || Password.Length == 5)
+            if (Password.Length == 9 || Password.Length == 5 && Password != null)
             {
-                bool result = long.TryParse(Password, out var number);
+                bool result = long.TryParse(Password, out var number); //проверка номера на цифры
                 if (result == true)
                 {
                     DialogResult = true;

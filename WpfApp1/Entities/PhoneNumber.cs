@@ -2,7 +2,7 @@
 
 namespace WpfApp1.Entities
 {
-    public class PhoneNumber : Entity
+    public class PhoneNumber
     {
         public int AbonentId { get; set; }
 

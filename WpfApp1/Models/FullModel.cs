@@ -12,11 +12,11 @@ namespace WpfApp1.Models
         public string middleName;
         public string FullName => $"{surname} {name} {middleName}";
 
-        public int homePhone;
+        public string homePhone;
 
-        public int mobilePhone;
+        public string mobilePhone;
 
-        public int workPhone;
+        public string workPhone;
 
         public string streetName;
 
@@ -71,7 +71,7 @@ namespace WpfApp1.Models
             }
         }
 
-        public int HomePhone
+        public string HomePhone
         {
             get { return homePhone; }
             set
@@ -81,7 +81,7 @@ namespace WpfApp1.Models
             }
         }
 
-        public int MobilePhone
+        public string MobilePhone
         {
             get { return mobilePhone; }
             set
@@ -91,7 +91,7 @@ namespace WpfApp1.Models
             }
         }
 
-        public int WorkPhone
+        public string WorkPhone
         {
             get { return workPhone; }
             set
