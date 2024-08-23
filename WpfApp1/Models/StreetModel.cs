@@ -1,15 +1,15 @@
 ﻿using System.ComponentModel;
 using System.Runtime.CompilerServices;
 
-namespace WpfApp1.Models
+namespace PhoneCompany.Models
 {
     public class StreetModel : INotifyPropertyChanged
     {
-        public int id;
+        private int id;
 
-        public string streetName;
+        private string streetName;
 
-        public string info;
+        private string info;
 
         public int Id
         {
@@ -20,7 +20,6 @@ namespace WpfApp1.Models
                 OnPropertyChanged("Id");
             }
         }
-
         public string StreetName
         {
             get { return streetName; }
@@ -30,7 +29,6 @@ namespace WpfApp1.Models
                 OnPropertyChanged("StreetName");
             }
         }
-
         public string Info
         {
             get { return info; }

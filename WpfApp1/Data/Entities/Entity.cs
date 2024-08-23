@@ -1,4 +1,4 @@
-﻿namespace WpfApp1.Entities
+﻿namespace PhoneCompany.Entities
 {
     public abstract class Entity<TPrimaryKey>
     {

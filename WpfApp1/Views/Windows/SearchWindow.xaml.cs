@@ -1,7 +1,6 @@
-﻿using System;
-using System.Windows;
+﻿using System.Windows;
 
-namespace WpfApp1
+namespace PhoneCompany.Views.Windows
 {
     /// <summary>
     /// Логика взаимодействия для SearchWindow.xaml
@@ -33,7 +32,7 @@ namespace WpfApp1
                     Close();
                 }
             }
-            else 
+            else
             {
                 MessageBox.Show("Не корректный номер телефона!");
                 Close();

@@ -7,8 +7,8 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{0B74C5C0-DA79-46BF-BEF4-05B5FDBFD2C3}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <RootNamespace>WpfApp1</RootNamespace>
-    <AssemblyName>WpfApp1</AssemblyName>
+    <RootNamespace>PhoneCompany</RootNamespace>
+    <AssemblyName>PhoneCompany</AssemblyName>
     <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -206,42 +206,45 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Entities\Abonent.cs" />
-    <Compile Include="Entities\Address.cs" />
-    <Compile Include="Entities\Entity.cs" />
-    <Compile Include="Entities\People.cs" />
-    <Compile Include="Entities\PhoneNumber.cs" />
-    <Compile Include="Entities\Street.cs" />
+    <Compile Include="Commands\Base\Command.cs" />
+    <Compile Include="Commands\LambdaCommand.cs" />
+    <Compile Include="Data\Entities\Abonent.cs" />
+    <Compile Include="Data\Entities\Address.cs" />
+    <Compile Include="Data\Entities\Entity.cs" />
+    <Compile Include="Data\Entities\People.cs" />
+    <Compile Include="Data\Entities\PhoneNumber.cs" />
+    <Compile Include="Data\Entities\Street.cs" />
+    <Compile Include="ViewModels\Base\ViewModel.cs" />
+    <Compile Include="ViewModels\MainWindowViewModel.cs" />
     <Compile Include="Models\FullModel.cs" />
     <Compile Include="Models\AbonentModel.cs" />
     <Compile Include="Models\PhoneModel.cs" />
     <Compile Include="Models\AddressModel.cs" />
     <Compile Include="Models\StreetModel.cs" />
-    <Compile Include="SearchWindow.xaml.cs">
+    <Compile Include="ViewModels\SearchWindowViewModel.cs" />
+    <Compile Include="Views\Windows\SearchWindow.xaml.cs">
       <DependentUpon>SearchWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="SqLiteDataAccess.cs" />
-    <Compile Include="MainWindow.xaml.cs">
+    <Compile Include="Data\SqLiteDataAccess.cs" />
+    <Compile Include="Views\Windows\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="SqLiteInMemoryDb.cs" />
-    <Compile Include="StreetWindow.xaml.cs">
+    <Compile Include="Views\Windows\StreetWindow.xaml.cs">
       <DependentUpon>StreetWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Views\AbonentViewModel.cs" />
-    <Page Include="MainWindow.xaml">
+    <Page Include="Views\Windows\MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="SearchWindow.xaml">
+    <Page Include="Views\Windows\SearchWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="StreetWindow.xaml">
+    <Page Include="Views\Windows\StreetWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

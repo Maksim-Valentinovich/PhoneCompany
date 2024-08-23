@@ -1,17 +1,17 @@
 ﻿using System.ComponentModel;
 using System.Runtime.CompilerServices;
 
-namespace WpfApp1.Models
+namespace PhoneCompany.Models
 {
     public class AbonentModel : INotifyPropertyChanged
     {
-        public int id;
+        private int id;
 
-        public string name;
+        private string name;
 
-        public string surname;
+        private string surname;
 
-        public string middleName;
+        private string middleName;
         public string FullName => $"{surname} {name} {middleName}";
 
         public int Id

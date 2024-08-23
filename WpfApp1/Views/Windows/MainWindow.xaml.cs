@@ -2,13 +2,16 @@
 using Dapper;
 using System;
 using System.Collections.Generic;
+using System.Data.SQLite;
 using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Windows;
-using WpfApp1.Models;
+using PhoneCompany.Models;
+using PhoneCompany.ViewModels;
+using PhoneCompany.Data;
 
-namespace WpfApp1
+namespace PhoneCompany.Views.Windows
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
@@ -22,27 +25,33 @@ namespace WpfApp1
             InitializeComponent();
             //LoadData();
             //SeeData();
-            SqlDataNew();
-            phonesGrid.ItemsSource = fullModels;
+
+            //SqlDataNew();
+
+            //phonesGrid.ItemsSource = fullModels;
+
+            //DataContext = new MainWindowModel();
+            var connection = SqLiteDataAccess.SqlDataNew();
+            MainWindowViewModel windowModel = new MainWindowViewModel();
+            windowModel.MainViewModel(connection);
+            phonesGrid.ItemsSource = windowModel.Abonents;
         }
 
         private List<FullModel> LoadData()
         {
             return fullModels = SqLiteDataAccess.LoadData();
         }
-
         private void SeeData()
         {
             var connection = SqLiteDataAccess.SqlDataFromDB();
             fullModels = (List<FullModel>)connection.Query<FullModel>("select * from Abonents join Addreses on Addreses.AbonentId = Abonents.Id join Streets on Streets.Id = Addreses.StreetId join PhoneNumbers on PhoneNumbers.AbonentId = Abonents.Id", new DynamicParameters());
         }
-
-        private void SqlDataNew()
+        private SQLiteConnection SqlDataNew()
         {
             var connection = SqLiteDataAccess.SqlDataNew();
             fullModels = (List<FullModel>)connection.Query<FullModel>("select * from Abonents join Addreses on Addreses.AbonentId = Abonents.Id join Streets on Streets.Id = Addreses.StreetId join PhoneNumbers on PhoneNumbers.AbonentId = Abonents.Id", new DynamicParameters());
+            return connection;
         }
-
         private void RefrashButton_Click(object sender, RoutedEventArgs e)
         {
             findModel = new List<FullModel>();

@@ -1,15 +1,15 @@
 ﻿using System.ComponentModel;
 using System.Runtime.CompilerServices;
 
-namespace WpfApp1.Models
+namespace PhoneCompany.Models
 {
     public class AddressModel : INotifyPropertyChanged
     {
-        public int streetId;
+        private int streetId;
 
-        public int abonentId;
+        private int abonentId;
 
-        public int numberHouse;
+        private int numberHouse;
 
         public int StreetId
         {

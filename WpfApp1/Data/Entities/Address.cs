@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
 
-namespace WpfApp1.Entities
+namespace PhoneCompany.Entities
 {
     public class Address
     {

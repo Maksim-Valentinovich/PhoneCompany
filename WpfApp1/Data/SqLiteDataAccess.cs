@@ -4,9 +4,9 @@ using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
 using System.Data.SQLite;
-using WpfApp1.Models;
+using PhoneCompany.Models;
 
-namespace WpfApp1
+namespace PhoneCompany.Data
 {
     public class SqLiteDataAccess
     {
@@ -19,13 +19,6 @@ namespace WpfApp1
             }
         }
 
-        //public static void SaveAbonent(Abonent abonent)
-        //{
-        //    using (IDbConnection conn = new SqliteConnection(LoadConnectionString()))
-        //    {
-        //        conn.Execute("insert into Abonement (Name, SurName) values (@Name, @SurName)", abonent);
-        //    }
-        //}
         private static string LoadConnectionString(string id = "DefaultConnection")
         {
             return ConfigurationManager.ConnectionStrings[id].ConnectionString;

@@ -1,10 +1,7 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using System.Linq.Expressions;
+﻿using System.Linq;
 using System.Windows;
-using WpfApp1.Entities;
 
-namespace WpfApp1
+namespace PhoneCompany.Views.Windows
 {
     /// <summary>
     /// Логика взаимодействия для StreetWindow.xaml
