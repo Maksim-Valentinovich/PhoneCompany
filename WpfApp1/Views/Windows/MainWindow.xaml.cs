@@ -26,15 +26,7 @@ namespace PhoneCompany.Views.Windows
             //LoadData();
             //SeeData();
 
-            //SqlDataNew();
-
-            //phonesGrid.ItemsSource = fullModels;
-
-            //DataContext = new MainWindowModel();
-            var connection = SqLiteDataAccess.SqlDataNew();
-            MainWindowViewModel windowModel = new MainWindowViewModel();
-            windowModel.MainViewModel(connection);
-            phonesGrid.ItemsSource = windowModel.Abonents;
+            DataContext = new MainWindowViewModel();
         }
 
         private List<FullModel> LoadData()
@@ -52,6 +44,7 @@ namespace PhoneCompany.Views.Windows
             fullModels = (List<FullModel>)connection.Query<FullModel>("select * from Abonents join Addreses on Addreses.AbonentId = Abonents.Id join Streets on Streets.Id = Addreses.StreetId join PhoneNumbers on PhoneNumbers.AbonentId = Abonents.Id", new DynamicParameters());
             return connection;
         }
+
         private void RefrashButton_Click(object sender, RoutedEventArgs e)
         {
             findModel = new List<FullModel>();

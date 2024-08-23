@@ -23,12 +23,12 @@
 
     <DockPanel>
         <Menu DockPanel.Dock="Top">
-            <MenuItem Header="Обновить" Command="" ></MenuItem>
+            <MenuItem Header="Обновить" Command="{Binding ReflashCommand}" ></MenuItem>
             <MenuItem Header="CSV">
-                <MenuItem Header="Выгрузить CSV"></MenuItem>
+                <MenuItem Header="Выгрузить CSV" Command="{Binding MakeScvFileCommand}"></MenuItem>
             </MenuItem>
-            <MenuItem Header="Поиск"></MenuItem>
-            <MenuItem Header="Улицы"></MenuItem>
+            <MenuItem Header="Поиск" Command="{Binding SearchAbonentCommand}"></MenuItem>
+            <MenuItem Header="Улицы" Command="{Binding ViewStreetCommand}" ></MenuItem>
         </Menu>
 
         <Grid>
@@ -37,7 +37,7 @@
                 <RowDefinition />
             </Grid.RowDefinitions>
 
-            <DataGrid AutoGenerateColumns="False" x:Name="phonesGrid" HorizontalAlignment="Stretch">
+            <DataGrid AutoGenerateColumns="False" x:Name="phonesGrid" HorizontalAlignment="Stretch" ItemsSource="{Binding Abonents}">
                 <DataGrid.Columns>
                     <DataGridTextColumn Binding="{Binding FullName}" Header="ФИО" Width="200"/>
                     <DataGridTextColumn Binding="{Binding StreetName}" Header="Улица" Width="80"/>
