@@ -1,4 +1,6 @@
-﻿using System.Linq;
+﻿using PhoneCompany.ViewModels;
+using System.Data.SQLite;
+using System.Linq;
 using System.Windows;
 
 namespace PhoneCompany.Views.Windows
@@ -8,15 +10,10 @@ namespace PhoneCompany.Views.Windows
     /// </summary>
     public partial class StreetWindow : Window
     {
-        public StreetWindow()
+        public StreetWindow(SQLiteConnection Connection)
         {
             InitializeComponent();
-            SortAbonent();
-        }
-
-        private void SortAbonent()
-        {
-            phonesGrid.ItemsSource = MainWindow.fullModels.GroupBy(x => x.StreetName).Select(g => new { StreetName = g.Key, Count = g.Count() });
+            DataContext = new StreetWindowViewModel(Connection);
         }
 
         private void CloseButton_Click(object sender, RoutedEventArgs e)

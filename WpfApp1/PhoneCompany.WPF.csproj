@@ -221,7 +221,6 @@
     <Compile Include="Models\PhoneModel.cs" />
     <Compile Include="Models\AddressModel.cs" />
     <Compile Include="Models\StreetModel.cs" />
-    <Compile Include="ViewModels\SearchWindowViewModel.cs" />
     <Compile Include="ViewModels\StreetWindowViewModel.cs" />
     <Compile Include="Views\Windows\SearchWindow.xaml.cs">
       <DependentUpon>SearchWindow.xaml</DependentUpon>

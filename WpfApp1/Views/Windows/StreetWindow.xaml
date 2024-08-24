@@ -3,9 +3,17 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        
+        xmlns:vm="clr-namespace:PhoneCompany.ViewModels"
         xmlns:local="clr-namespace:PhoneCompany.Views.Windows"
         mc:Ignorable="d"
-        Title="MainWindow" Height="250" Width="400">
+        Title="Список улиц" 
+        Height="250" Width="400">
+    
+    <Window.DataContext>
+        <vm:StreetWindowViewModel/>
+    </Window.DataContext>
+    
     <Window.Resources>
         <Style TargetType="Button">
             <Setter Property="Margin" Value="20 8 20 8" />
@@ -18,7 +26,7 @@
             <RowDefinition Height="Auto" />
             <RowDefinition />
         </Grid.RowDefinitions>
-        <DataGrid AutoGenerateColumns="False" x:Name="phonesGrid">
+        <DataGrid AutoGenerateColumns="False" x:Name="phonesGrid" ItemsSource="{Binding Streets}">
             <DataGrid.Columns>
                 <DataGridTextColumn Binding="{Binding StreetName}" Header="Улица" Width="115"/>
                 <DataGridTextColumn Binding="{Binding Info}" Header="Инфо" Width="200"/>

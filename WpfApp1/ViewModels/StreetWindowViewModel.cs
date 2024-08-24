@@ -1,66 +1,28 @@
-﻿using CsvHelper;
-using System;
+﻿using Dapper;
+using PhoneCompany.Models;
+using PhoneCompany.ViewModels.Base;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Globalization;
-using System.IO;
+using System.Collections.ObjectModel;
+using System.Data.SQLite;
 using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Input;
 
 namespace PhoneCompany.ViewModels
 {
-    public class StreetWindowViewModel : INotifyPropertyChanged
+    public class StreetWindowViewModel : ViewModel
     {
-        public ICommand MakeScvFileCommand { get; }
+        public ObservableCollection<FullModel> Streets { get; set; }
+        private ObservableCollection<FullModel> Abonents { get; set; }
 
-        private bool CanMakeScvFileCommandExecute(object p) => true;
-        private void OnMakeScvFileCommandExecute(object p)
+        public StreetWindowViewModel(SQLiteConnection Connection)
         {
+            Abonents = new ObservableCollection<FullModel>((List<FullModel>)Connection.Query<FullModel>("select * from Abonents join Addreses on Addreses.AbonentId = Abonents.Id join Streets on Streets.Id = Addreses.StreetId join PhoneNumbers on PhoneNumbers.AbonentId = Abonents.Id", new DynamicParameters()));
+            SortAbonent(Abonents);
         }
 
-        private int id;
-
-        private string streetName;
-
-        private string info;
-
-        public int Id
+        public void SortAbonent(ObservableCollection<FullModel> Abonents)
         {
-            get { return id; }
-            set
-            {
-                id = value;
-                OnPropertyChanged("Id");
-            }
-        }
-        public string StreetName
-        {
-            get { return streetName; }
-            set
-            {
-                streetName = value;
-                OnPropertyChanged("StreetName");
-            }
-        }
-        public string Info
-        {
-            get { return info; }
-            set
-            {
-                info = value;
-                OnPropertyChanged("Info");
-            }
+            Streets = (ObservableCollection<FullModel>)Abonents.GroupBy(x => x.StreetName).Select(g => new { StreetName = g.Key, Count = g.Count() });
         }
 
-        public event PropertyChangedEventHandler PropertyChanged;
-        public void OnPropertyChanged([CallerMemberName] string prop = "")
-        {
-            if (PropertyChanged != null)
-                PropertyChanged(this, new PropertyChangedEventArgs(prop));
-        }
     }
 }

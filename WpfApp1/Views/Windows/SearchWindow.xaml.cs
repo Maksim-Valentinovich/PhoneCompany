@@ -7,9 +7,9 @@ namespace PhoneCompany.Views.Windows
     /// </summary>
     public partial class SearchWindow : Window
     {
-        public string Password
+        public string PhoneNumber
         {
-            get { return passwordBox.Text; }
+            get { return phoneNumberBox.Text; }
         }
 
         public SearchWindow()
@@ -19,9 +19,9 @@ namespace PhoneCompany.Views.Windows
 
         private void Accept_Click(object sender, RoutedEventArgs e)
         {
-            if (Password.Length == 9 || Password.Length == 5 && Password != null)
+            if (PhoneNumber.Length == 9 || PhoneNumber.Length == 5 && PhoneNumber != null)
             {
-                bool result = long.TryParse(Password, out var number); //проверка номера на цифры
+                bool result = long.TryParse(PhoneNumber, out var number); //проверка номера на цифры
                 if (result == true)
                 {
                     DialogResult = true;
@@ -29,13 +29,11 @@ namespace PhoneCompany.Views.Windows
                 else
                 {
                     MessageBox.Show("Не корректный номер телефона!");
-                    Close();
                 }
             }
             else
             {
                 MessageBox.Show("Не корректный номер телефона!");
-                Close();
             }
         }
     }

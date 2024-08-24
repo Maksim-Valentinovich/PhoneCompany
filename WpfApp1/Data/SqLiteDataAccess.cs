@@ -24,11 +24,17 @@ namespace PhoneCompany.Data
             return ConfigurationManager.ConnectionStrings[id].ConnectionString;
         }
 
-
-        public static SQLiteConnection SqlDataFromDB()
+        public static SQLiteConnection CreateConnectionDB()
         {
             var connection = new SQLiteConnection("Data Source=:memory:;Mode=Memory");
             connection.Open();
+            return connection;
+        }
+
+
+        public static SQLiteConnection SqlDataFromDB()
+        {
+            var connection = CreateConnectionDB();
 
             var command = connection.CreateCommand();
 
@@ -87,8 +93,7 @@ namespace PhoneCompany.Data
             string[] streets = { "Ленина", "Гагарина", "Дьяконова", "Егорова", "Сенная", "Дыбенко", "Большевиков" };
 
             Random rnd = new Random();
-            var connection = new SQLiteConnection("Data Source=:memory:;Mode=Memory");
-            connection.Open();
+            var connection = CreateConnectionDB();
             var command = connection.CreateCommand();
 
             command.CommandText = "CREATE TABLE Abonents (Id INTEGER PRIMARY KEY AUTOINCREMENT, Name TEXT , Surname TEXT, MiddleName TEXT)";

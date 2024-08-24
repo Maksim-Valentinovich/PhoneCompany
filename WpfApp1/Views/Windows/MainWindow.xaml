@@ -7,7 +7,7 @@
         xmlns:vm="clr-namespace:PhoneCompany.ViewModels"
         xmlns:local="clr-namespace:PhoneCompany.Views.Windows"
         mc:Ignorable="d"
-        Title="{Binding Title}" 
+        Title="Список клиентов" 
         Height="400" Width="850">
     
     <Window.DataContext>

@@ -6,12 +6,12 @@ using PhoneCompany.Models;
 using PhoneCompany.ViewModels.Base;
 using PhoneCompany.Views.Windows;
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Data.SQLite;
 using System.Globalization;
 using System.IO;
+using System.Linq;
 using System.Windows;
 using System.Windows.Input;
 
@@ -19,14 +19,15 @@ namespace PhoneCompany.ViewModels
 {
     public class MainWindowViewModel : ViewModel
     {
-
         public ObservableCollection<FullModel> Abonents { get; set; }
+        private ObservableCollection<FullModel> FindAbonents { get; set; }
 
-        public MainWindowViewModel() 
+        private readonly SQLiteConnection Connection;
+        public MainWindowViewModel()
         {
-            var connection = SqLiteDataAccess.SqlDataNew();
-            Abonents = new ObservableCollection<FullModel>((List<FullModel>)connection.Query<FullModel>("select * from Abonents join Addreses on Addreses.AbonentId = Abonents.Id join Streets on Streets.Id = Addreses.StreetId join PhoneNumbers on PhoneNumbers.AbonentId = Abonents.Id", new DynamicParameters()));
-            
+            Connection = SqLiteDataAccess.SqlDataNew();
+            Abonents = new ObservableCollection<FullModel>((List<FullModel>)Connection.Query<FullModel>("select * from Abonents join Addreses on Addreses.AbonentId = Abonents.Id join Streets on Streets.Id = Addreses.StreetId join PhoneNumbers on PhoneNumbers.AbonentId = Abonents.Id", new DynamicParameters()));
+
             MakeScvFileCommand = new LambdaCommand(OnMakeScvFileCommandExecute, CanMakeScvFileCommandExecute);
             ViewStreetCommand = new LambdaCommand(OnViewStreetExecute, CanViewStreetExecute);
             ReflashCommand = new LambdaCommand(OnReflashExecute, CanReflashExecute);
@@ -36,7 +37,7 @@ namespace PhoneCompany.ViewModels
         #region Команды
         public ICommand MakeScvFileCommand { get; }
         private bool CanMakeScvFileCommandExecute(object p) => true;
-        private void OnMakeScvFileCommandExecute(object p) 
+        private void OnMakeScvFileCommandExecute(object p)
         {
             string pathCsvFile = $"C:\\Users\\Alexandr\\Desktop\\Тестовые задания\\Владимир\\Telephone Company\\TelephoneCompany\\Выгрузка файлов\\report_{DateTime.Now:yyyy-MM-dd HH.mm.ss}.csv";
 
@@ -58,26 +59,52 @@ namespace PhoneCompany.ViewModels
             }
         }
 
+
         public ICommand ViewStreetCommand { get; }
         private bool CanViewStreetExecute(object p) => true;
         private void OnViewStreetExecute(object p)
         {
-            StreetWindow streetWindow = new StreetWindow();
+            StreetWindow streetWindow = new StreetWindow(Connection);
             streetWindow.ShowDialog();
         }
+
 
         public ICommand ReflashCommand { get; }
         private bool CanReflashExecute(object p) => true;
         private void OnReflashExecute(object p)
         {
+            FindAbonents.Clear();
+            Abonents.Clear();
 
+            foreach (var item in (List<FullModel>)Connection.Query<FullModel>("select * from Abonents join Addreses on Addreses.AbonentId = Abonents.Id join Streets on Streets.Id = Addreses.StreetId join PhoneNumbers on PhoneNumbers.AbonentId = Abonents.Id", new DynamicParameters()))
+            {
+                Abonents.Add(item);
+            }
         }
+
+
         public ICommand SearchAbonentCommand { get; }
         private bool CanSearchAbonentExecute(object p) => true;
         private void OnSearchAbonentExecute(object p)
         {
             SearchWindow searchWindow = new SearchWindow();
-            searchWindow.ShowDialog();
+            if (searchWindow.ShowDialog() == true)
+            {
+                if (Abonents.Any(s => s.HomePhone == searchWindow.PhoneNumber))
+                {
+                    FindAbonents = new ObservableCollection<FullModel> { Abonents.First(x => x.HomePhone == searchWindow.PhoneNumber || x.WorkPhone == searchWindow.PhoneNumber || x.MobilePhone == searchWindow.PhoneNumber) };
+                    Abonents.Clear();
+                    Abonents.Add(FindAbonents.First());
+                }
+                else
+                {
+                    MessageBox.Show("Нет абонентов, удовлетворяющих критерию поиска");
+                }
+            }
+            else
+            {
+                searchWindow.Close();
+            }
         }
         #endregion
 
@@ -100,6 +127,8 @@ namespace PhoneCompany.ViewModels
         //private string streetName;
 
         //private int numberHouse;
+
+
 
         //public string Title
         //{
@@ -181,6 +210,16 @@ namespace PhoneCompany.ViewModels
         //    {
         //        workPhone = value;
         //        OnPropertyChanged("WorkPhone");
+        //    }
+        //}
+
+        //public ObservableCollection<FullModel> Abonents
+        //{
+        //    get { return Abonents; }
+        //    set
+        //    {
+        //        Abonents = value;
+        //        OnPropertyChanged("Abonents");
         //    }
         //}
         //#endregion
