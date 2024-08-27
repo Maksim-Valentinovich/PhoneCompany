@@ -10,10 +10,10 @@ namespace PhoneCompany.Views.Windows
     /// </summary>
     public partial class StreetWindow : Window
     {
-        public StreetWindow(SQLiteConnection Connection)
+        public StreetWindow()
         {
             InitializeComponent();
-            DataContext = new StreetWindowViewModel(Connection);
+            DataContext = new StreetWindowViewModel();
         }
 
         private void CloseButton_Click(object sender, RoutedEventArgs e)

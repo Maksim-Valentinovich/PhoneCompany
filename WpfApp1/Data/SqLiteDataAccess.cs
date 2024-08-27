@@ -10,6 +10,9 @@ namespace PhoneCompany.Data
 {
     public class SqLiteDataAccess
     {
+        public static SQLiteConnection Connection;
+
+
         public static List<FullModel> LoadData()
         {
             using (IDbConnection conn = new SQLiteConnection(LoadConnectionString()))
@@ -26,10 +29,11 @@ namespace PhoneCompany.Data
 
         public static SQLiteConnection CreateConnectionDB()
         {
-            var connection = new SQLiteConnection("Data Source=:memory:;Mode=Memory");
-            connection.Open();
-            return connection;
+            Connection = new SQLiteConnection("Data Source=:memory:;Mode=Memory");
+            Connection.Open();
+            return Connection;
         }
+
 
 
         public static SQLiteConnection SqlDataFromDB()
@@ -111,19 +115,16 @@ namespace PhoneCompany.Data
                 command.CommandText = "INSERT INTO Abonents (Name,Surname,MiddleName) " + "VALUES ('" + names[rnd.Next(0, names.Length)] + "','" + surNames[rnd.Next(0, surNames.Length)] + "','" + middleNames[rnd.Next(0, middleNames.Length)] + "')";
                 command.ExecuteNonQuery();
             }
-
             for (int i = 0; i < 7; i++)
             {
                 command.CommandText = "INSERT INTO Streets (StreetName) " + "VALUES ('" + streets[rnd.Next(0, streets.Length)] + "')";
                 command.ExecuteNonQuery();
             }
-
             for (int i = 1; i < 10; i++)
             {
                 command.CommandText = "INSERT INTO PhoneNumbers (AbonentId,HomePhone,WorkPhone,MobilePhone) " + "VALUES ('" + i + "','" + rnd.Next(1, 10) + rnd.Next(1, 10) + rnd.Next(1, 10) + rnd.Next(1, 10) + rnd.Next(1, 10) + "','" + 8911 + rnd.Next(1, 10) + rnd.Next(1, 10) + rnd.Next(1, 10) + rnd.Next(1, 10) + rnd.Next(1, 10) + "','" + 8911 + rnd.Next(1, 10) + rnd.Next(1, 10) + rnd.Next(1, 10) + rnd.Next(1, 10) + rnd.Next(1, 10) + rnd.Next(1, 10) + "')";
                 command.ExecuteNonQuery();
             }
-
             for (int i = 1; i < 10; i++)
             {
                 command.CommandText = "INSERT INTO Addreses (StreetId,AbonentId,NumberHouse) " + "VALUES ('" + rnd.Next(1, 10) + "','" + i + "','" + rnd.Next(1, 100) + "')";

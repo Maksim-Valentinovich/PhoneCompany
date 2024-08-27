@@ -11,6 +11,8 @@ namespace PhoneCompany.Models
 
         private string info;
 
+        private int count;
+
         public int Id
         {
             get { return id; }
@@ -36,6 +38,15 @@ namespace PhoneCompany.Models
             {
                 info = value;
                 OnPropertyChanged("Info");
+            }
+        }
+        public int Count
+        {
+            get { return count; }
+            set
+            {
+                count = value;
+                OnPropertyChanged("Count");
             }
         }
 

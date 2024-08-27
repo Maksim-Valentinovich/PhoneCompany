@@ -64,7 +64,7 @@ namespace PhoneCompany.ViewModels
         private bool CanViewStreetExecute(object p) => true;
         private void OnViewStreetExecute(object p)
         {
-            StreetWindow streetWindow = new StreetWindow(Connection);
+            StreetWindow streetWindow = new StreetWindow();
             streetWindow.ShowDialog();
         }
 
