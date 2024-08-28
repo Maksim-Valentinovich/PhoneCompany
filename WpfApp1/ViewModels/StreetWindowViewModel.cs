@@ -3,9 +3,7 @@ using PhoneCompany.Data;
 using PhoneCompany.Models;
 using PhoneCompany.ViewModels.Base;
 using System.Collections.Generic;
-using System.Collections;
 using System.Linq;
-using System.Runtime.InteropServices;
 
 namespace PhoneCompany.ViewModels
 {
@@ -21,7 +19,7 @@ namespace PhoneCompany.ViewModels
         public void SortAbonent()
         {
             List<FullModel> Abonents = (List<FullModel>)SqLiteDataAccess.Connection.Query<FullModel>("select * from Abonents join Addreses on Addreses.AbonentId = Abonents.Id join Streets on Streets.Id = Addreses.StreetId", new DynamicParameters());
-           
+
             Streets = Abonents.GroupBy(x => x.StreetName).Select(g => new StreetModel { StreetName = g.Key, Count = g.Count(), Info = "Информация о улице" }).OrderByDescending(z => z.Count).ToList();
 
         }

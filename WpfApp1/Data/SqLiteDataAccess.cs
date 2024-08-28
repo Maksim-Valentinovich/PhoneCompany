@@ -12,16 +12,6 @@ namespace PhoneCompany.Data
     {
         public static SQLiteConnection Connection;
 
-
-        public static List<FullModel> LoadData()
-        {
-            using (IDbConnection conn = new SQLiteConnection(LoadConnectionString()))
-            {
-                List<FullModel> fullModels = (List<FullModel>)conn.Query<FullModel>("select * from Abonents join Addreses on Addreses.AbonentId = Abonents.Id join Streets on Streets.Id = Addreses.StreetId join PhoneNumbers on PhoneNumbers.AbonentId = Abonents.Id", new DynamicParameters());
-                return fullModels;
-            }
-        }
-
         private static string LoadConnectionString(string id = "DefaultConnection")
         {
             return ConfigurationManager.ConnectionStrings[id].ConnectionString;
@@ -110,7 +100,7 @@ namespace PhoneCompany.Data
             command.ExecuteNonQuery();
 
 
-            for (int i = 0; i < 10; i++)
+            for (int i = 0; i < 30; i++)
             {
                 command.CommandText = "INSERT INTO Abonents (Name,Surname,MiddleName) " + "VALUES ('" + names[rnd.Next(0, names.Length)] + "','" + surNames[rnd.Next(0, surNames.Length)] + "','" + middleNames[rnd.Next(0, middleNames.Length)] + "')";
                 command.ExecuteNonQuery();
@@ -120,12 +110,12 @@ namespace PhoneCompany.Data
                 command.CommandText = "INSERT INTO Streets (StreetName) " + "VALUES ('" + streets[rnd.Next(0, streets.Length)] + "')";
                 command.ExecuteNonQuery();
             }
-            for (int i = 1; i < 10; i++)
+            for (int i = 1; i < 30; i++)
             {
                 command.CommandText = "INSERT INTO PhoneNumbers (AbonentId,HomePhone,WorkPhone,MobilePhone) " + "VALUES ('" + i + "','" + rnd.Next(1, 10) + rnd.Next(1, 10) + rnd.Next(1, 10) + rnd.Next(1, 10) + rnd.Next(1, 10) + "','" + 8911 + rnd.Next(1, 10) + rnd.Next(1, 10) + rnd.Next(1, 10) + rnd.Next(1, 10) + rnd.Next(1, 10) + "','" + 8911 + rnd.Next(1, 10) + rnd.Next(1, 10) + rnd.Next(1, 10) + rnd.Next(1, 10) + rnd.Next(1, 10) + rnd.Next(1, 10) + "')";
                 command.ExecuteNonQuery();
             }
-            for (int i = 1; i < 10; i++)
+            for (int i = 1; i < 30; i++)
             {
                 command.CommandText = "INSERT INTO Addreses (StreetId,AbonentId,NumberHouse) " + "VALUES ('" + rnd.Next(1, 10) + "','" + i + "','" + rnd.Next(1, 100) + "')";
                 command.ExecuteNonQuery();
