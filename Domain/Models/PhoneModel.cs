@@ -1,28 +1,63 @@
-﻿using Newtonsoft.Json.Linq;
-using OutCode.EscapeTeams.ObjectRepository;
-using PhoneCompany.Domain.Entities;
+﻿using System.ComponentModel;
+using System.Runtime.CompilerServices;
 
 namespace PhoneCompany.Domain.Models
 {
-    //public class PhoneModel : ModelBase
-    //{
-    //    //private PhoneNumber _phoneNumber;
-    //    //protected override BaseEntity Entity => _phoneNumber;
+    public class PhoneModel : INotifyPropertyChanged
+    {
+        public int abonentId;
 
-    //    //public PhoneModel(PhoneNumber phoneNumber)
-    //    //{ 
-    //    //    _phoneNumber = phoneNumber;
-    //    //}
+        public string homePhone;
 
-    //    //public PhoneModel() 
-    //    //{
-    //    //    _phoneNumber = new PhoneNumber(Guid.NewGuid());
-    //    //}
+        public string workPhone;
 
-    //    //public Guid AbonentId
-    //    //{
-    //    //    get => _phoneNumber.AbonentId;
-    //    //    set => UpdateProperty(() => _phoneNumber.AbonentId, value);
-    //    //}
-    //}
+        public string mobilePhone;
+
+        public int AbonentId
+        {
+            get { return abonentId; }
+            set
+            {
+                abonentId = value;
+                OnPropertyChanged("AbonentId");
+            }
+        }
+
+        public string HomePhone
+        {
+            get { return homePhone; }
+            set
+            {
+                homePhone = value;
+                OnPropertyChanged("HomePhone");
+            }
+        }
+        public string WorkPhone
+        {
+            get { return workPhone; }
+            set
+            {
+                workPhone = value;
+                OnPropertyChanged("WorkPhone");
+            }
+        }
+
+        public string MobilePhone
+        {
+            get { return mobilePhone; }
+            set
+            {
+                mobilePhone = value;
+                OnPropertyChanged("MobilePhone");
+            }
+        }
+
+
+        public event PropertyChangedEventHandler PropertyChanged;
+        public void OnPropertyChanged([CallerMemberName] string prop = "")
+        {
+            if (PropertyChanged != null)
+                PropertyChanged(this, new PropertyChangedEventArgs(prop));
+        }
+    }
 }

@@ -1,0 +1,59 @@
+﻿<Window x:Class="PhoneCompany.Views.Windows.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        
+        xmlns:vm="clr-namespace:PhoneCompany.ViewModels"
+        xmlns:local="clr-namespace:PhoneCompany.Views.Windows"
+        mc:Ignorable="d"
+        Title="Список клиентов" 
+        Height="400" Width="850">
+    
+    <Window.DataContext>
+        <vm:MainWindowViewModel/>
+    </Window.DataContext>
+    <Window.Resources>
+        <Style TargetType="Button">
+            <Setter Property="Margin" Value="20 8 20 8" />
+            <Setter Property="Width" Value="100" />
+            <Setter Property="Height" Value="30" />
+        </Style>
+    </Window.Resources>
+
+    <DockPanel>
+        <Menu DockPanel.Dock="Top">
+            <MenuItem Header="Обновить" Command="{Binding ReflashCommand}" ></MenuItem>
+            <MenuItem Header="CSV">
+                <MenuItem Header="Выгрузить CSV" Command="{Binding MakeScvFileCommand}"></MenuItem>
+            </MenuItem>
+            <MenuItem Header="Поиск" Command="{Binding SearchAbonentCommand}"></MenuItem>
+            <MenuItem Header="Улицы" Command="{Binding ViewStreetCommand}" ></MenuItem>
+        </Menu>
+
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="300"/>
+                <RowDefinition />
+            </Grid.RowDefinitions>
+
+            <DataGrid AutoGenerateColumns="False" x:Name="phonesGrid" HorizontalAlignment="Stretch" ItemsSource="{Binding Abonents}">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Binding="{Binding FullName}" Header="ФИО" Width="200"/>
+                    <DataGridTextColumn Binding="{Binding StreetName}" Header="Улица" Width="80"/>
+                    <DataGridTextColumn Binding="{Binding NumHouse}" Header="Номер дома" Width="79"/>
+                    <DataGridTextColumn Binding="{Binding HomePhone}" Header="Номер телефона (домашний)" Width="155"/>
+                    <DataGridTextColumn Binding="{Binding WorkPhone}" Header="Номер телефона (рабочий)" Width="155"/>
+                    <DataGridTextColumn Binding="{Binding MobilePhone}" Header="Номер телефона (мобильный)" Width="155"/>
+                </DataGrid.Columns>
+            </DataGrid>
+
+            <!--<StackPanel HorizontalAlignment="Center"  Grid.Row="1" Orientation="Horizontal">
+                <Button x:Name="searchButton" Content="Поиск" Click="SearcButton_Click" Background="LightBlue" />
+                <Button x:Name="scvButton" Content="Выгрузить CSV" Click="ScvButton_Click" Background="LightBlue" />
+                <Button x:Name="streetButton" Content="Улицы" Click="StreetButton_Click" Background="LightBlue"/>
+                <Button x:Name="refreshButton" Content="Обновить" Click="RefrashButton_Click" Background="LightBlue"/>
+            </StackPanel>-->
+        </Grid>
+    </DockPanel>
+</Window>

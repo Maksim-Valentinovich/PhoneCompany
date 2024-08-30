@@ -1,33 +1,51 @@
-﻿using OutCode.EscapeTeams.ObjectRepository;
-using PhoneCompany.Domain.Entities;
+﻿using System.ComponentModel;
+using System.Runtime.CompilerServices;
 
 namespace PhoneCompany.Domain.Models
 {
-    //public class AddressModel : ModelBase
-    //{
-    //    private Address _adressEntity;
-    //    protected override BaseEntity Entity => _adressEntity;
+    public class AddressModel : INotifyPropertyChanged
+    {
+        public int streetId;
 
-    //    public AddressModel(Address entity)
-    //    {
-    //        _adressEntity = entity;
-    //    }
+        public int abonentId;
 
-    //    public AddressModel()
-    //    {
-    //        _adressEntity = new Address(Guid.NewGuid());
-    //    }
+        public int numberHouse;
 
-    //    public Guid ParentId
-    //    {
-    //        get => _adressEntity.ParentId;
-    //        set => UpdateProperty(() => _childEntity.ParentId, value);
-    //    }
+        public int StreetId
+        {
+            get { return streetId; }
+            set
+            {
+                streetId = value;
+                OnPropertyChanged("StreetId");
+            }
+        }
+        public int AbonentId
+        {
+            get { return abonentId; }
+            set
+            {
+                abonentId = value;
+                OnPropertyChanged("AbonentId");
+            }
+        }
 
-    //    public string Value
-    //    {
-    //        get => _adressEntity.Value;
-    //        set => UpdateProperty(() => _childEntity.Value, value);
-    //    }
-    //}
+        public int NumberHouse
+        {
+            get { return numberHouse; }
+            set
+            {
+                numberHouse = value;
+                OnPropertyChanged("NumberHouse");
+            }
+        }
+
+
+        public event PropertyChangedEventHandler PropertyChanged;
+        public void OnPropertyChanged([CallerMemberName] string prop = "")
+        {
+            if (PropertyChanged != null)
+                PropertyChanged(this, new PropertyChangedEventArgs(prop));
+        }
+    }
 }

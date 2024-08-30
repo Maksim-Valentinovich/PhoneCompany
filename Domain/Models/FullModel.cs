@@ -1,26 +1,26 @@
 ﻿using System.ComponentModel;
 using System.Runtime.CompilerServices;
 
-namespace PhoneCompany.Models
+namespace PhoneCompany.Domain.Models
 {
     public class FullModel : INotifyPropertyChanged
     {
-        private string name;
+        public string name;
 
-        private string surname;
+        public string surname;
 
-        private string middleName;
+        public string middleName;
         public string FullName => $"{surname} {name} {middleName}";
 
-        private string homePhone;
+        public string homePhone;
 
-        private string mobilePhone;
+        public string mobilePhone;
 
-        private string workPhone;
+        public string workPhone;
 
-        private string streetName;
+        public string streetName;
 
-        private int numberHouse;
+        public int numberHouse;
 
         public string Name
         {

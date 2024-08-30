@@ -3,16 +3,13 @@ using System.Runtime.CompilerServices;
 
 namespace PhoneCompany.Domain.Models
 {
-    public class AbonentModel : INotifyPropertyChanged
+    public class StreetModel : INotifyPropertyChanged
     {
         public int id;
 
-        public string name;
+        public string streetName;
 
-        public string surname;
-
-        public string middleName;
-        public string FullName => $"{surname} {name} {middleName}";
+        public string info;
 
         public int Id
         {
@@ -24,35 +21,25 @@ namespace PhoneCompany.Domain.Models
             }
         }
 
-        public string Name
+        public string StreetName
         {
-            get { return name; }
+            get { return streetName; }
             set
             {
-                name = value;
-                OnPropertyChanged("Name");
-            }
-        }
-        public string Surname
-        {
-            get { return surname; }
-            set
-            {
-                surname = value;
-                OnPropertyChanged("Surname");
+                streetName = value;
+                OnPropertyChanged("StreetName");
             }
         }
 
-        public string MiddleName
+        public string Info
         {
-            get { return middleName; }
+            get { return info; }
             set
             {
-                middleName = value;
-                OnPropertyChanged("MiddleName");
+                info = value;
+                OnPropertyChanged("Info");
             }
         }
-
 
         public event PropertyChangedEventHandler PropertyChanged;
         public void OnPropertyChanged([CallerMemberName] string prop = "")

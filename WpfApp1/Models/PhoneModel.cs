@@ -1,17 +1,17 @@
 ﻿using System.ComponentModel;
 using System.Runtime.CompilerServices;
 
-namespace WpfApp1.Models
+namespace PhoneCompany.Models
 {
     public class PhoneModel : INotifyPropertyChanged
     {
-        public int abonentId;
+        private int abonentId;
 
-        public string homePhone;
+        private string homePhone;
 
-        public string workPhone;
+        private string workPhone;
 
-        public string mobilePhone;
+        private string mobilePhone;
 
         public int AbonentId
         {
@@ -41,7 +41,6 @@ namespace WpfApp1.Models
                 OnPropertyChanged("WorkPhone");
             }
         }
-
         public string MobilePhone
         {
             get { return mobilePhone; }
